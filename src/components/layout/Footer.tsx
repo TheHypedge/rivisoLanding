@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import RivisoLogo from "./RivisoLogo";
 
 const footerLinks = {
   Product: ["Workflow", "Modules", "Dashboard", "Analytics"],
@@ -16,13 +17,8 @@ export default function Footer() {
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-2 gap-10 md:grid-cols-6 md:gap-8">
             <div className="col-span-2 md:col-span-2 flex flex-col items-center md:items-start text-center md:text-left">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-brand-gradient flex items-center justify-center shadow-md shadow-orange-500/20">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M2 7L6 3L10 7L6 11L2 7Z" fill="white" fillOpacity="0.95" />
-                  </svg>
-                </div>
-                <span className="text-[15px] font-bold text-white">RIVISO</span>
+              <div className="mb-4">
+                <RivisoLogo variant="onDark" href="/" imageClassName="h-9 max-w-[140px]" />
               </div>
               <p className="text-[13px] text-white/35 leading-relaxed max-w-[220px] mb-5">
                 The AI-native operating system for modern SEO workflows.

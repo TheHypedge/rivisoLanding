@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     title: "RIVISO — The AI Operating System for Modern SEO",
     description: "One intelligent workflow that replaces your entire SEO stack.",
   },
+  // Favicon: src/app/favicon.ico + icon.png (Next.js file conventions)
 };
 
 export default function RootLayout({
@@ -37,6 +38,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={interTight.variable}>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+      </head>
       <body
         className="antialiased bg-[var(--color-bg-base)] text-[var(--color-text-primary)]"
         style={{ fontFamily: "var(--font-inter-tight), Inter, system-ui, sans-serif" }}

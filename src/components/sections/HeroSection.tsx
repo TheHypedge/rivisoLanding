@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Container from "@/components/layout/Container";
 import HeroPreview from "@/components/dashboard/HeroPreview";
+import WaitlistModal from "@/components/waitlist/WaitlistModal";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -48,66 +50,67 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="product"
-      className="hero-section relative flex w-full flex-col items-center overflow-x-hidden"
-    >
-      <div className="hero-glow pointer-events-none absolute inset-0" />
-      <div className="pointer-events-none absolute left-1/2 top-[22%] h-[480px] w-[min(900px,90vw)] -translate-x-1/2 rounded-full bg-[rgba(234,88,12,0.06)] blur-[120px]" />
+    <>
+      <section
+        ref={sectionRef}
+        id="product"
+        className="hero-section relative flex w-full flex-col items-center overflow-x-hidden"
+      >
+        <div className="hero-glow pointer-events-none absolute inset-0" />
+        <div className="hero-grid pointer-events-none absolute inset-0 opacity-[0.45]" aria-hidden />
+        <div className="pointer-events-none absolute left-1/2 top-[18%] h-[520px] w-[min(920px,92vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(234,88,12,0.09)_0%,transparent_68%)] blur-[100px]" />
 
-      <Container className="page-center relative pb-24 md:pb-32">
-        {/* Centered copy */}
-        <div className="hero-reveal flex w-full max-w-[720px] flex-col items-center gap-8 px-4 text-center opacity-0 md:gap-10">
-          <div className="badge mx-auto w-fit">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
-            AI-native SEO infrastructure
+        <Container className="page-center relative pb-20 md:pb-28">
+          <div className="hero-reveal mx-auto flex w-full max-w-[780px] flex-col items-center gap-7 px-4 text-center opacity-0 md:gap-9">
+            <div className="badge mx-auto w-fit">
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
+              AI-native SEO infrastructure
+            </div>
+
+            <h1 className="hero-headline text-display text-[var(--color-text-primary)]">
+              The AI Operating System
+              <br />
+              <span className="hero-headline-accent text-[var(--color-accent)]">
+                for Modern SEO
+              </span>
+            </h1>
+
+            <p className="hero-subcopy text-body mx-auto max-w-[560px] text-[1.0625rem] leading-[1.65] md:text-[1.125rem]">
+              From research to publishing — automate the entire SEO workflow with
+              AI-native infrastructure built for operators, publishers, and growth teams.
+            </p>
+
+            <div className="flex flex-col items-center gap-4">
+              <motion.button
+                type="button"
+                onClick={() => setWaitlistOpen(true)}
+                whileHover={{ scale: 1.02, y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                className="btn-waitlist min-w-[220px] px-8 py-3.5 text-[0.9375rem] shadow-[0_12px_40px_-12px_rgba(234,88,12,0.45)]"
+              >
+                Join Waitlist
+              </motion.button>
+              <p className="text-body-sm flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+                <span>No credit card required</span>
+                <span className="hidden text-zinc-300 sm:inline" aria-hidden>
+                  ·
+                </span>
+                <span>Early access for founding teams</span>
+              </p>
+            </div>
           </div>
 
-          <h1 className="text-display text-[var(--color-text-primary)]">
-            The AI Operating System
-            <br />
-            <span className="text-[var(--color-accent)]">for Modern SEO</span>
-          </h1>
-
-          <p className="text-body mx-auto max-w-[540px]">
-            From research to publishing — automate the entire SEO workflow with
-            AI-native infrastructure built for operators, publishers, and growth teams.
-          </p>
-
-          <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-            <motion.a
-              href="#cta"
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className="btn-primary w-full sm:w-auto sm:min-w-[180px]"
-            >
-              Join Waitlist
-            </motion.a>
-            <motion.a
-              href="#workflow"
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className="btn-secondary w-full sm:w-auto sm:min-w-[180px]"
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-                <circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.2" />
-                <path d="M5.5 5.5L9 7L5.5 8.5V5.5Z" fill="currentColor" />
-              </svg>
-              Watch Workflow
-            </motion.a>
+          <div className="hero-preview mt-10 w-full max-w-[1080px] px-2 opacity-0 sm:mt-14 sm:px-0 md:mt-16">
+            <div className="hero-preview-frame">
+              <HeroPreview />
+            </div>
           </div>
+        </Container>
 
-          <p className="text-body-sm">No credit card required · Early access for founding teams</p>
-        </div>
+        <div className="divider-h w-full" />
+      </section>
 
-        {/* Dashboard — full width of container, centered on page */}
-        <div className="hero-preview mt-6 w-full max-w-[1040px] px-2 opacity-0 sm:mt-10 sm:px-0 md:mt-12">
-          <HeroPreview />
-        </div>
-      </Container>
-
-      <div className="divider-h w-full" />
-    </section>
+      <WaitlistModal open={waitlistOpen} onClose={() => setWaitlistOpen(false)} />
+    </>
   );
 }

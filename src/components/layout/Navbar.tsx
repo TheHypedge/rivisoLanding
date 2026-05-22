@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { mainNavItems, type NavMenuId } from "@/lib/navigation";
 import MegaMenuPanel from "./MegaMenuPanel";
+import RivisoLogo from "./RivisoLogo";
 
 const menuIds = new Set<NavMenuId>(["platform", "solutions", "resources", "company"]);
 
@@ -82,12 +83,7 @@ export default function Navbar() {
       >
         <div className="header-shell relative">
           <div className="nav-bar-row relative z-[3] grid h-[var(--nav-height)] grid-cols-[auto_1fr_auto] items-center gap-8 border-b border-zinc-200/80 bg-white lg:gap-12">
-            <Link
-              href="#"
-              className="nav-logo shrink-0 lowercase text-[#ea580c]"
-            >
-              riviso
-            </Link>
+            <RivisoLogo href="/" />
 
             <nav
               className="hidden lg:flex items-center justify-center gap-2 xl:gap-3"

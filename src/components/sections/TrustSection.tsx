@@ -1,18 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Container from "@/components/layout/Container";
-
-const logos = [
-  "Northline Media",
-  "ScalePress",
-  "ContentGrid",
-  "RankTheory",
-  "PublishOS",
-  "SearchLayer",
-  "Atlas SEO",
-  "Meridian",
-];
+import LogoCarousel from "@/components/ui/LogoCarousel";
 
 export default function TrustSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -35,7 +24,7 @@ export default function TrustSection() {
           opacity: 1,
           y: 0,
           duration: 0.6,
-          stagger: 0.06,
+          stagger: 0.08,
           ease: "power2.out",
           scrollTrigger: {
             trigger: el,
@@ -53,27 +42,21 @@ export default function TrustSection() {
     <section
       ref={sectionRef}
       id="trust"
-      className="flex w-full flex-col items-center bg-[var(--color-bg-raised)] py-16 md:py-20"
+      className="trust-section flex w-full flex-col items-center overflow-hidden py-16 md:py-20 lg:py-24"
+      aria-labelledby="trust-heading"
     >
-      <Container className="page-center">
-        <p className="trust-reveal w-full text-center text-body-sm opacity-0">
-          Built for modern publishing teams and SEO operators
-        </p>
+      <div className="trust-section-inner flex w-full max-w-[1200px] flex-col items-center px-6 text-center">
+        <h2
+          id="trust-heading"
+          className="trust-reveal trust-section-title text-headline w-full opacity-0"
+        >
+          Brands Actively Using Riviso
+        </h2>
 
-        <div className="trust-reveal divider-h my-10 w-full max-w-[960px] opacity-0" />
-
-        <ul className="trust-reveal flex w-full max-w-[960px] flex-wrap items-center justify-center gap-x-10 gap-y-8 opacity-0 md:gap-x-14">
-          {logos.map((name) => (
-            <li key={name} className="flex justify-center">
-              <span className="whitespace-nowrap text-[13px] font-semibold tracking-tight text-zinc-400 transition-colors hover:text-zinc-600">
-                {name}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </Container>
-
-      <div className="divider-h mt-0 w-full" />
+        <div className="trust-reveal logo-carousel-wrap mt-12 w-full opacity-0 md:mt-14">
+          <LogoCarousel />
+        </div>
+      </div>
     </section>
   );
 }

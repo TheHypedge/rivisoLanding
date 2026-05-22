@@ -87,15 +87,16 @@ export default function ExecutionSection() {
     <section
       ref={sectionRef}
       id="execution"
-      className="execution-section w-full bg-[#050505] py-20 md:py-28 lg:py-32"
+      className="execution-section w-full py-20 md:py-28"
     >
       <Container>
-        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-16 xl:gap-24">
+        <div className="execution-inner grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
           <div className="execution-copy opacity-0">
-            <h2 className="text-headline text-[#f8fafc]">
+            <p className="platform-eyebrow mb-5 w-fit">Execution layer</p>
+            <h2 className="text-headline text-[var(--color-text-primary)]">
               RIVISO is AI built to execute SEO end to end
             </h2>
-            <div className="mt-8 space-y-5 text-[1.0625rem] leading-[1.65] text-zinc-400">
+            <div className="mt-8 space-y-5 text-body">
               <p>
                 From keyword intelligence to publish-ready content — RIVISO orchestrates the
                 full SEO workflow in one AI-native system built for operators, publishers, and
@@ -108,10 +109,10 @@ export default function ExecutionSection() {
             </div>
           </div>
 
-          <div className="execution-visual relative flex min-h-[320px] items-center justify-center md:min-h-[400px]">
-            <div className="execution-visual-bg pointer-events-none absolute inset-0 rounded-2xl" aria-hidden />
+          <div className="execution-visual relative flex min-h-[280px] items-center justify-center md:min-h-[360px]">
+            <div className="execution-visual-bg pointer-events-none absolute inset-0" aria-hidden />
 
-            <div className="relative z-[1] flex w-full max-w-[420px] flex-col gap-4 py-6">
+            <div className="relative z-[1] flex w-full max-w-[440px] flex-col gap-3.5 py-4 md:gap-4 md:py-6">
               {stackLabels.map((item, i) => (
                 <div
                   key={item.label}

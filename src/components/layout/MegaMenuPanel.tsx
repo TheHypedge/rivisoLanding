@@ -9,6 +9,7 @@ import {
   solutionsMenu,
   type NavMenuId,
 } from "@/lib/navigation";
+import { siteLogo } from "@/lib/site-logo";
 import {
   ArrowRight,
   ChevronRight,
@@ -271,7 +272,12 @@ function CompanyMenu() {
           </Link>
         </div>
         <div className="flex h-[116px] items-center justify-center bg-gradient-to-b from-zinc-100 to-zinc-200/80">
-          <span className="text-2xl font-semibold tracking-tight text-[#ea580c]">riviso</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={siteLogo.default}
+            alt="Riviso"
+            className="h-9 w-auto max-w-[140px] object-contain"
+          />
         </div>
       </motion.div>
 

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
 import TrustSection from "@/components/sections/TrustSection";
+import BenefitsShowcaseSection from "@/components/sections/BenefitsShowcaseSection";
 import PlatformSection from "@/components/sections/PlatformSection";
 import ExecutionSection from "@/components/sections/ExecutionSection";
 import { useLenis } from "@/hooks/useLenis";
@@ -28,6 +29,7 @@ export default function Home() {
         <HeroSection />
       </div>
       <TrustSection />
+      <BenefitsShowcaseSection />
       <PlatformSection />
       <ExecutionSection />
     </main>
