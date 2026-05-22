@@ -23,6 +23,14 @@ Enable for **Production**, **Preview**, and **Development** (or at least Product
 1. **Redeploy** the project (Deployments → … → Redeploy) so new variables load.
 2. Open the live site and submit **Join Waitlist** to confirm mail arrives at `info@thehypedge.com`.
 
+## Required for production waitlist
+
+All of these must be set on Vercel or the form returns a generic error:
+
+- `SMTP_HOST`, `SMTP_USER`, `SMTP_PASS` (password with `#` must be pasted in full in the Vercel UI)
+- `WAITLIST_NOTIFY_EMAIL`
+- `SMTP_FROM` (quoted style not needed in Vercel UI)
+
 ## Troubleshooting
 
 - **Authentication failed:** Re-check password in hPanel; use the mailbox password, not hPanel login.

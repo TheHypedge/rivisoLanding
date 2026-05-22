@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -13,9 +14,12 @@ export default function WaitlistModal({ open, onClose }: WaitlistModalProps) {
   const titleId = useId();
   const descId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
+  const [mounted, setMounted] = useState(false);
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     if (!open) return;
@@ -71,7 +75,9 @@ export default function WaitlistModal({ open, onClose }: WaitlistModalProps) {
     }, 280);
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {open && (
         <div className="waitlist-modal-root fixed inset-0 z-[100] flex items-center justify-center px-4 py-8 sm:px-6">
@@ -193,6 +199,7 @@ export default function WaitlistModal({ open, onClose }: WaitlistModalProps) {
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

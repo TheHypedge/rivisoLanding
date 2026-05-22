@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { siteLogo } from "@/lib/site-logo";
 import { cn } from "@/lib/utils";
@@ -10,8 +10,6 @@ type RivisoLogoProps = {
   href?: string;
   className?: string;
   imageClassName?: string;
-  /** Show text wordmark if image is missing */
-  showTextFallback?: boolean;
 };
 
 export default function RivisoLogo({
@@ -19,42 +17,51 @@ export default function RivisoLogo({
   href = "/",
   className,
   imageClassName,
-  showTextFallback = true,
 }: RivisoLogoProps) {
+  const [mounted, setMounted] = useState(false);
   const [failed, setFailed] = useState(false);
   const [useFallbackSrc, setUseFallbackSrc] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
   const primarySrc = variant === "onDark" ? siteLogo.onDark : siteLogo.default;
   const src =
     useFallbackSrc && variant === "onDark" ? siteLogo.default : primarySrc;
 
-  const content =
-    failed && showTextFallback ? (
-      <span
-        className={cn(
-          "font-[family-name:var(--font-heading)] text-xl font-[450] lowercase tracking-tight",
-          variant === "onDark" ? "text-[#ea580c]" : "text-[#ea580c]"
-        )}
-      >
-        riviso
-      </span>
-    ) : (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={src}
-        alt="Riviso"
-        onError={() => {
-          if (variant === "onDark" && !useFallbackSrc) {
-            setUseFallbackSrc(true);
-            return;
-          }
-          setFailed(true);
-        }}
-        className={cn(
-          "h-8 w-auto max-w-[160px] object-contain object-left",
-          imageClassName
-        )}
-      />
-    );
+  const content = !mounted ? (
+    <span
+      className={cn("inline-block h-8 w-[120px]", imageClassName)}
+      aria-hidden
+    />
+  ) : failed ? (
+    <span
+      className={cn(
+        "font-[family-name:var(--font-heading)] text-xl font-[450] lowercase tracking-tight text-[#ea580c]",
+        imageClassName
+      )}
+    >
+      riviso
+    </span>
+  ) : (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt="Riviso"
+      width={140}
+      height={32}
+      onError={() => {
+        if (variant === "onDark" && !useFallbackSrc) {
+          setUseFallbackSrc(true);
+          return;
+        }
+        setFailed(true);
+      }}
+      className={cn(
+        "h-8 w-auto max-w-[160px] object-contain object-left",
+        imageClassName
+      )}
+    />
+  );
 
   if (!href) {
     return <div className={cn("inline-flex items-center", className)}>{content}</div>;

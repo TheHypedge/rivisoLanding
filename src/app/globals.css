@@ -752,6 +752,19 @@ h6 {
     0 32px 64px -24px rgba(15, 23, 42, 0.14);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .hero-metric-bar {
+    width: 0;
+    animation: hero-metric-grow 1.2s ease-out 0.6s forwards;
+  }
+}
+
+@keyframes hero-metric-grow {
+  to {
+    width: 88%;
+  }
+}
+
 .btn-waitlist {
   display: inline-flex;
   align-items: center;

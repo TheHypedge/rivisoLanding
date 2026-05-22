@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { formatWaitlistError, sendWaitlistNotification } from "@/lib/waitlist-email";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {

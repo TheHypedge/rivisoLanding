@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 const sidebarItems = [
   { label: "Overview", active: false },
   { label: "Research", active: true },
@@ -172,19 +170,12 @@ function MetricBlock({
         {value}
       </p>
       <p className="mt-1 text-[10px] font-medium text-[#3fb950]">{delta}</p>
-      <motion.div
-        className="mt-2 h-1 overflow-hidden rounded-full bg-[rgba(255,255,255,0.06)]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-      >
-        <motion.div
-          className="h-full rounded-full bg-[var(--color-accent)]"
-          initial={{ width: 0 }}
-          animate={{ width: "88%" }}
-          transition={{ duration: 1.2, delay: 1.4, ease: "easeOut" }}
+      <div className="mt-2 h-1 overflow-hidden rounded-full bg-[rgba(255,255,255,0.06)]">
+        <div
+          className="hero-metric-bar h-full w-[88%] rounded-full bg-[var(--color-accent)]"
+          aria-hidden
         />
-      </motion.div>
+      </div>
     </div>
   );
 }
