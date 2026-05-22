@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import Section from "@/components/layout/Section";
+import SectionHeader from "@/components/layout/SectionHeader";
 
 const traditionalItems = [
   { label: "Keyword research tool", cost: "$99/mo" },
@@ -61,29 +63,16 @@ export default function ComparisonSection() {
   const total = traditionalItems.reduce((s, i) => s + parseInt(i.cost.replace(/\D/g, "")), 0);
 
   return (
-    <section ref={sectionRef} className="section-padding relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-orange-600/4 blur-[130px]" />
-      </div>
+    <Section variant="default" className="relative">
+      <div ref={sectionRef}>
+      <SectionHeader
+        align="center"
+        badge="Why RIVISO"
+        title="Stop stitching tools together."
+        description="The traditional SEO stack is fragmented, expensive, and slow. RIVISO replaces it with one system."
+      />
 
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* Header */}
-        <div className="text-center mb-14">
-          <div className="brand-badge mx-auto w-fit mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
-            Why RIVISO
-          </div>
-          <h2 className="heading-lg text-white mb-5">
-            Stop stitching tools together.
-          </h2>
-          <p className="text-[16px] text-white/40 max-w-[460px] mx-auto leading-relaxed">
-            The traditional SEO stack is fragmented, expensive, and slow. RIVISO is built differently.
-          </p>
-        </div>
-
-        {/* Side panels */}
-        <div className="grid lg:grid-cols-2 gap-5 mb-12">
+        <div className="mx-auto w-full max-w-4xl grid lg:grid-cols-2 gap-6 mb-10">
 
           {/* Traditional */}
           <div className="cmp-left bg-[#0f0f0f] border border-white/[0.07] rounded-2xl overflow-hidden opacity-0">
@@ -163,7 +152,7 @@ export default function ComparisonSection() {
         </div>
 
         {/* Comparison table */}
-        <div className="cmp-table bg-[#0f0f0f] border border-white/[0.06] rounded-2xl overflow-hidden">
+        <div className="cmp-table mx-auto w-full max-w-4xl bg-[#0f0f0f] border border-white/[0.06] rounded-2xl overflow-hidden">
           <div className="grid grid-cols-3 gap-4 px-6 py-4 border-b border-white/[0.05]">
             <div className="label-sm text-white/25">Category</div>
             <div className="label-sm text-white/25">Traditional</div>
@@ -188,6 +177,6 @@ export default function ComparisonSection() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

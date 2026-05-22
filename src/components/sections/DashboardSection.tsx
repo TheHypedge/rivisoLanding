@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Section from "@/components/layout/Section";
+import SectionHeader from "@/components/layout/SectionHeader";
 
 const tabs = ["Analytics", "Content Pipeline", "SEO Score", "AI Workflow"];
 
@@ -61,34 +63,22 @@ export default function DashboardSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="dashboard" className="section-padding relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full bg-orange-600/4 blur-[130px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[350px] rounded-full bg-amber-600/3 blur-[110px]" />
-      </div>
+    <Section id="dashboard" variant="elevated" className="relative">
+      <div ref={sectionRef}>
+      <SectionHeader
+        className="db-header opacity-0"
+        badge="Product Preview"
+        title={
+          <>
+            See it in action.
+            <br />
+            <span className="gradient-text">Live intelligence.</span>
+          </>
+        }
+        description="Every article, keyword, and workflow — orchestrated from one command center."
+      />
 
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* Header */}
-        <div className="db-header flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 mb-12 opacity-0">
-          <div>
-            <div className="brand-badge mb-6 w-fit">
-              <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
-              Product Preview
-            </div>
-            <h2 className="heading-lg text-white">
-              See it in action.
-              <br />
-              <span className="gradient-text">Live intelligence.</span>
-            </h2>
-          </div>
-          <p className="text-[15px] text-white/40 max-w-[320px] leading-relaxed">
-            Every article, keyword, and workflow — orchestrated from one elegant command center.
-          </p>
-        </div>
-
-        {/* Dashboard */}
-        <div className="db-main rounded-2xl bg-[#0f0f0f] border border-white/[0.07] overflow-hidden shadow-2xl shadow-black/60 glow-orange opacity-0">
+      <div className="db-main panel overflow-hidden shadow-2xl shadow-black/50 glow-orange opacity-0 mx-auto w-full max-w-5xl">
 
           {/* Title bar */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.05] bg-[#0c0c0c]">
@@ -166,7 +156,7 @@ export default function DashboardSection() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 

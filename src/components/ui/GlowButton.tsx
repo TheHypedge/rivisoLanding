@@ -26,11 +26,11 @@ export default function GlowButton({
 
   const variantMap = {
     primary:
-      "bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-lg shadow-blue-500/20",
+      "bg-gradient-to-r from-orange-600 to-orange-500 text-white font-semibold shadow-lg shadow-orange-500/20",
     ghost:
       "bg-transparent text-white/60 hover:text-white border border-white/10 hover:border-white/20",
     outline:
-      "bg-transparent text-blue-400 border border-blue-500/30 hover:border-blue-500/60",
+      "bg-transparent text-orange-500 border border-orange-500/30 hover:border-orange-500/60",
   };
 
   return (

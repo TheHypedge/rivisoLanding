@@ -7,12 +7,12 @@ interface GlassCardProps {
   children: React.ReactNode;
   className?: string;
   hover?: boolean;
-  glow?: "blue" | "indigo" | "purple" | "none";
+  glow?: "orange" | "amber" | "purple" | "none";
 }
 
 const glowMap = {
-  blue: "hover:shadow-blue-500/10 hover:border-blue-500/20",
-  indigo: "hover:shadow-indigo-500/10 hover:border-indigo-500/20",
+  orange: "hover:shadow-orange-500/10 hover:border-orange-500/20",
+  amber: "hover:shadow-amber-500/10 hover:border-amber-500/20",
   purple: "hover:shadow-purple-500/10 hover:border-purple-500/20",
   none: "",
 };
@@ -21,7 +21,7 @@ export default function GlassCard({
   children,
   className,
   hover = true,
-  glow = "blue",
+  glow = "orange",
 }: GlassCardProps) {
   return (
     <motion.div

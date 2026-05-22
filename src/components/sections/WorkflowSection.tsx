@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import Section from "@/components/layout/Section";
+import SectionHeader from "@/components/layout/SectionHeader";
 
 const workflowSteps = [
   {
@@ -150,33 +152,23 @@ export default function WorkflowSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="workflow" className="section-padding relative overflow-hidden">
-
-      {/* Section bg */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] rounded-full bg-orange-600/4 blur-[130px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* Header */}
-        <div className="wf-header text-center mb-20 opacity-0">
-          <div className="brand-badge mb-6 mx-auto w-fit">
-            <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
-            Automated Workflow
-          </div>
-          <h2 className="heading-lg text-white mb-5">
+    <Section id="workflow" variant="default" className="relative">
+      <div ref={sectionRef}>
+      <SectionHeader
+        className="wf-header opacity-0"
+        align="center"
+        badge="Automated Workflow"
+        title={
+          <>
             One workflow.
             <br />
             <span className="gradient-text">Everything automated.</span>
-          </h2>
-          <p className="text-[16px] text-white/40 max-w-[460px] mx-auto leading-relaxed">
-            Six interconnected modules working as one intelligent pipeline — from research to ranking.
-          </p>
-        </div>
+          </>
+        }
+        description="Six interconnected steps in one intelligent pipeline — from research to ranking."
+      />
 
-        {/* Pipeline */}
-        <div className="relative">
+        <div className="relative max-w-4xl mx-auto">
           {/* Centre spine */}
           <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.05] to-transparent -translate-x-1/2 pointer-events-none" />
 
@@ -259,6 +251,6 @@ export default function WorkflowSection() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -36,9 +36,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark ${interTight.variable}`}>
+    <html lang="en" className={interTight.variable}>
       <body
-        className="antialiased bg-[#0c0c0c] text-white"
+        className="antialiased bg-[var(--color-bg-base)] text-[var(--color-text-primary)]"
         style={{ fontFamily: "var(--font-inter-tight), Inter, system-ui, sans-serif" }}
       >
         {children}
