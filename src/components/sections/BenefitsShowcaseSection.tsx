@@ -27,19 +27,19 @@ type BenefitItem = {
 const benefits: BenefitItem[] = [
   {
     id: "lifecycle",
-    title: "Automate every step of the SEO lifecycle",
+    title: "Automate the entire SEO workflow",
     description:
-      "Move from keyword research to publish-ready drafts in one connected flow — agents handle clustering, briefs, and outlines while your team stays in control.",
-    ctaLabel: "Explore content pipelines",
+      "From keyword research to publish-ready content, RIVISO orchestrates every stage of the workflow using AI-powered agents, optimization systems, and structured publishing pipelines.",
+    ctaLabel: "Explore workflow automation →",
     ctaHref: "#platform",
     theme: "orange",
     Illustration: LifecycleIllustration,
   },
   {
     id: "scale",
-    title: "Scale campaigns across sites and markets",
+    title: "Scale SEO across markets and brands",
     description:
-      "Run repeatable workflows across portfolios without copy-paste chaos — batch briefs, localize clusters, and ship more pages with the same headcount.",
+      "Manage multiple sites, content operations, and regional strategies from one centralized SEO infrastructure layer.",
     ctaLabel: "Explore research agents",
     ctaHref: "#execution",
     theme: "blue",
@@ -47,9 +47,9 @@ const benefits: BenefitItem[] = [
   },
   {
     id: "context",
-    title: "Keep brand and SEO context in one hub",
+    title: "Keep SEO intelligence in one system",
     description:
-      "Riviso IQ stores voice, competitors, entities, and style rules so every agent and pipeline outputs on-brand, search-aligned content.",
+      "Centralize briefs, topical clusters, optimization logic, and internal linking data inside a unified operational workspace.",
     ctaLabel: "Learn about Riviso IQ",
     ctaHref: "#platform",
     theme: "green",
@@ -57,9 +57,9 @@ const benefits: BenefitItem[] = [
   },
   {
     id: "quality",
-    title: "Ship faster without sacrificing quality",
+    title: "Ship faster without compromising quality",
     description:
-      "Built-in scoring checks intent, readability, and entity coverage before publish — so operators move fast with confidence, not rework.",
+      "Reduce manual execution with AI-assisted workflows while maintaining editorial control, consistency, and search performance standards.",
     ctaLabel: "View quality controls",
     ctaHref: "#modules",
     theme: "amber",
@@ -141,11 +141,11 @@ export default function BenefitsShowcaseSection() {
     <section
       ref={sectionRef}
       id="benefits"
-      className="benefits-showcase-section w-full bg-[var(--color-bg-base)] py-20 md:py-28"
+      className="site-section benefits-showcase-section w-full bg-[var(--color-bg-base)] py-20 md:py-28"
       aria-labelledby="benefits-showcase-heading"
     >
       <Container>
-        <div className="benefits-reveal benefits-showcase mx-auto w-full max-w-[1200px] opacity-0">
+        <div className="benefits-reveal benefits-showcase opacity-0">
           <div className="benefits-showcase-layout">
             <header className="benefits-showcase-header">
               <p className="platform-eyebrow mb-5 w-fit">Why Riviso</p>
@@ -153,11 +153,11 @@ export default function BenefitsShowcaseSection() {
                 id="benefits-showcase-heading"
                 className="text-headline text-[var(--color-text-primary)]"
               >
-                Why modern SEO teams choose Riviso
+               The infrastructure layer
+               for scalable SEO operations
               </h2>
               <p className="text-body mt-5">
-                Give your team the tools to move faster, stay on-brand, and scale SEO across
-                every site, market, and content type.
+              Replace fragmented SEO workflows with a centralized AI-native system designed for scale, speed, and operational clarity.
               </p>
             </header>
 
@@ -206,7 +206,7 @@ export default function BenefitsShowcaseSection() {
                             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                             className="benefits-accordion-detail overflow-hidden"
                           >
-                            <p className="text-body mt-4">{item.description}</p>
+                            <p className="text-body">{item.description}</p>
                             <Link
                               href={item.ctaHref}
                               className={cn(

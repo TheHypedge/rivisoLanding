@@ -4,31 +4,24 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   companyMenu,
-  platformMenu,
+  platformWorkflowMenu,
   resourcesMenu,
   solutionsMenu,
   type NavMenuId,
 } from "@/lib/navigation";
 import { siteLogo } from "@/lib/site-logo";
-import {
-  ArrowRight,
-  ChevronRight,
-  IconContent,
-  IconGeo,
-  IconOptimize,
-  IconPublish,
-  IconResearch,
-  IconSeo,
-} from "./MegaMenuIcons";
+import { ArrowRight, ChevronRight, IconGeo, IconPublish, IconSeo } from "./MegaMenuIcons";
 
-const platformIcons = [IconResearch, IconContent, IconOptimize] as const;
 const useCaseIcons = [IconSeo, IconGeo, IconPublish] as const;
 
-const visualAccent: Record<string, string> = {
-  blue: "from-[#ffedd5] to-[#fff7ed] text-[#ea580c]",
-  green: "from-[#d1fae5] to-[#ecfdf5] text-[#059669]",
-  orange: "from-[#ffedd5] to-[#fff7ed] text-[#ea580c]",
-};
+const workflowPipelineSteps = [
+  "Research",
+  "Plan",
+  "Generate",
+  "Link",
+  "Optimize",
+  "Publish",
+] as const;
 
 const cardAccent: Record<string, string> = {
   orange: "bg-[#fff7ed] border-[#fed7aa] hover:border-[#fdba74]",
@@ -63,52 +56,60 @@ export default function MegaMenuPanel({ menuId }: MegaMenuPanelProps) {
       style={{ backgroundColor: "#ffffff" }}
     >
       {menuId === "platform" && <PlatformMenu />}
-      {menuId === "solutions" && <SolutionsMenu />}
       {menuId === "resources" && <ResourcesMenu />}
-      {menuId === "company" && <CompanyMenu />}
     </motion.div>
   );
 }
 
 function PlatformMenu() {
+  const { featured, columns } = platformWorkflowMenu;
+
   return (
-    <div className="grid grid-cols-3 gap-8 divide-x divide-zinc-200/80">
-      {platformMenu.map((col, i) => {
-        const Icon = platformIcons[i];
-        const accent = col.accent ?? "orange";
-        return (
-          <motion.div key={col.title} variants={item} className="px-7 py-1 first:pl-1 last:pr-1">
-            <div
-              className={`mb-6 flex h-[100px] items-center justify-center rounded-xl bg-gradient-to-br ${visualAccent[accent]}`}
-            >
-              <Icon className="opacity-90" />
-            </div>
-            <h3 className="mb-3 text-[16px] font-semibold tracking-tight text-zinc-900">{col.title}</h3>
-            {col.description && (
-              <p className="mb-6 text-[13px] leading-[1.55] text-zinc-500">{col.description}</p>
-            )}
-            <ul className="space-y-0.5">
-              {col.links.map((link) => (
-                <li key={link.title}>
-                  <Link href={link.href} className="mega-menu-link">
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-300" />
-                    {link.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            {col.footerLink && (
-              <Link
-                href={col.footerLink.href}
-                className="mt-6 inline-flex items-center gap-1.5 rounded-lg px-1 py-2 text-[13px] font-semibold text-[#ea580c] transition-opacity hover:opacity-80"
+    <div className="platform-workflow-menu">
+      <motion.aside variants={item} className="platform-workflow-featured">
+        <h3 className="platform-workflow-featured-title">{featured.title}</h3>
+        <p className="platform-workflow-featured-desc">{featured.description}</p>
+        <Link href={featured.href} className="platform-workflow-featured-cta">
+          {featured.cta}
+          <ArrowRight />
+        </Link>
+        <div className="platform-workflow-featured-visual" aria-hidden>
+          <p className="platform-workflow-visual-label">Active pipeline</p>
+          <div className="platform-workflow-visual-steps">
+            {workflowPipelineSteps.map((step, index) => (
+              <span
+                key={step}
+                className={index < 2 ? "is-complete" : index === 2 ? "is-active" : ""}
               >
-                {col.footerLink.label}
-                <ArrowRight />
-              </Link>
-            )}
-          </motion.div>
-        );
-      })}
+                {step}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.aside>
+
+      {columns.map((column, columnIndex) => (
+        <motion.div
+          key={`workflow-col-${columnIndex}`}
+          variants={item}
+          className="platform-workflow-column"
+        >
+          <div className="platform-workflow-column-header">
+            <h3 className="platform-workflow-column-title">{column.title}</h3>
+            <p className="platform-workflow-column-desc">{column.description}</p>
+          </div>
+          <ul className="platform-workflow-cards">
+            {column.items.map((card) => (
+              <li key={card.title}>
+                <Link href={card.href} className="platform-workflow-card group">
+                  <h4 className="platform-workflow-card-title">{card.title}</h4>
+                  <p className="platform-workflow-card-desc">{card.description}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      ))}
     </div>
   );
 }

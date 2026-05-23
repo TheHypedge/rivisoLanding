@@ -56,10 +56,10 @@ export default function ExecutionSection() {
 
       gsap.fromTo(
         el.querySelector(".execution-copy"),
-        { opacity: 0, x: -24 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
-          x: 0,
+          y: 0,
           duration: 0.75,
           ease: "power3.out",
           scrollTrigger: { trigger: el, start: "top 78%", once: true },
@@ -68,10 +68,10 @@ export default function ExecutionSection() {
 
       gsap.fromTo(
         el.querySelectorAll(".execution-label"),
-        { opacity: 0, x: 32 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
-          x: 0,
+          y: 0,
           duration: 0.65,
           stagger: 0.12,
           ease: "power3.out",
@@ -87,11 +87,10 @@ export default function ExecutionSection() {
     <section
       ref={sectionRef}
       id="execution"
-      className="execution-section w-full py-20 md:py-28"
+      className="site-section execution-section w-full overflow-x-clip py-20 md:py-28"
     >
-      <Container>
-        <div className="execution-inner grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
-          <div className="execution-copy opacity-0">
+      <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+          <div className="execution-copy min-w-0 opacity-0">
             <p className="platform-eyebrow mb-5 w-fit">Execution layer</p>
             <h2 className="text-headline text-[var(--color-text-primary)]">
               RIVISO is AI built to execute SEO end to end
@@ -109,10 +108,10 @@ export default function ExecutionSection() {
             </div>
           </div>
 
-          <div className="execution-visual relative flex min-h-[280px] items-center justify-center md:min-h-[360px]">
+          <div className="execution-visual relative flex min-h-[280px] min-w-0 items-center justify-center md:min-h-[360px]">
             <div className="execution-visual-bg pointer-events-none absolute inset-0" aria-hidden />
 
-            <div className="relative z-[1] flex w-full max-w-[440px] flex-col gap-3.5 py-4 md:gap-4 md:py-6">
+            <div className="relative z-[1] flex w-full max-w-[440px] flex-col gap-3.5 py-4 md:gap-4 md:py-6 lg:mx-auto">
               {stackLabels.map((item, i) => (
                 <div
                   key={item.label}
@@ -127,7 +126,6 @@ export default function ExecutionSection() {
               ))}
             </div>
           </div>
-        </div>
       </Container>
     </section>
   );

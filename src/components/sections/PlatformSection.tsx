@@ -13,21 +13,21 @@ import {
 const platformCards = [
   {
     title: "Research Agents",
-    description: "Purpose-built AI agents that execute real SEO research work.",
+    description: "Purpose-built research agents designed to execute scalable SEO intelligence workflows.",
     href: "#workflow",
     theme: "green" as const,
     Illustration: AgentsIllustration,
   },
   {
     title: "Content Pipelines",
-    description: "Repeatable workflows that move work from brief to publish.",
+    description: "Structured workflows that move content from research and briefs to optimization and publishing — automatically.",
     href: "#modules",
     theme: "orange" as const,
     Illustration: PipelinesIllustration,
   },
   {
     title: "Riviso IQ",
-    description: "Maintain quality and context with a rich SEO knowledge hub.",
+    description: "A unified knowledge system that connects SEO strategy, optimization logic, and publishing intelligence.",
     href: "#modules",
     theme: "blue" as const,
     Illustration: ContextIllustration,
@@ -36,20 +36,14 @@ const platformCards = [
 
 const cardThemes = {
   green: {
-    bg: "bg-[#e8f6ee]",
-    grid: "platform-card-grid--green",
     stroke: "text-[#15803d]",
     arrow: "group-hover:bg-[#15803d] group-hover:text-white",
   },
   orange: {
-    bg: "bg-[#ffeee8]",
-    grid: "platform-card-grid--orange",
     stroke: "text-[#c2410c]",
     arrow: "group-hover:bg-[#c2410c] group-hover:text-white",
   },
   blue: {
-    bg: "bg-[#e8f0ff]",
-    grid: "platform-card-grid--blue",
     stroke: "text-[#1d4ed8]",
     arrow: "group-hover:bg-[#1d4ed8] group-hover:text-white",
   },
@@ -108,27 +102,29 @@ export default function PlatformSection() {
     <section
       ref={sectionRef}
       id="platform"
-      className="flex w-full flex-col items-center bg-[var(--color-bg-base)] py-20 md:py-28"
+      className="site-section platform-section w-full overflow-x-clip bg-[var(--color-bg-base)]"
     >
-      <Container className="page-center">
-        <div className="platform-reveal flex w-full max-w-[720px] flex-col items-center gap-6 text-center opacity-0 md:gap-8">
-          <p className="platform-eyebrow">The Riviso Platform</p>
-
-          <h2 className="text-headline text-[var(--color-text-primary)]">
-            The execution platform for modern SEO
+      <Container className="flex flex-col items-center">
+        <header className="platform-header platform-reveal opacity-0">
+          <h2 className="platform-header-title text-headline text-[var(--color-text-primary)]">
+            Built to execute
+            <br />
+            modern SEO at scale
           </h2>
 
           <p className="text-body max-w-[560px]">
-            From keyword intelligence to publish-ready content — orchestrate the full
-            SEO workflow with AI-native infrastructure built for operators and growth teams.
+            From keyword intelligence to publish-ready content, RIVISO helps teams automate
+            execution without losing strategic control.
           </p>
 
-          <Link href="#modules" className="btn-platform">
-            Explore The Platform
-          </Link>
-        </div>
+          <div className="platform-header-cta">
+            <Link href="#modules" className="btn-platform">
+              See The Workflow
+            </Link>
+          </div>
+        </header>
 
-        <div className="platform-reveal mt-14 grid w-full max-w-[1200px] grid-cols-1 gap-5 opacity-0 md:mt-16 md:grid-cols-3 md:gap-6">
+        <div className="platform-cards-grid platform-reveal opacity-0">
           {platformCards.map((card) => {
             const theme = cardThemes[card.theme];
             const Illustration = card.Illustration;
@@ -136,29 +132,25 @@ export default function PlatformSection() {
             return (
               <motion.div
                 key={card.title}
+                className="h-full"
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
               >
-                <Link
-                  href={card.href}
-                  className={`group platform-card ${theme.bg} flex min-h-[420px] flex-col rounded-2xl p-6 md:min-h-[480px] md:p-7`}
-                >
-                  <h3 className="text-title text-[var(--color-text-primary)]">{card.title}</h3>
+                <Link href={card.href} className="group platform-card h-full">
+                  <h3 className="platform-card-title text-title text-[var(--color-text-primary)]">
+                    {card.title}
+                  </h3>
 
-                  <div
-                    className={`platform-card-art relative my-6 flex flex-1 items-center justify-center md:my-8 ${theme.grid}`}
-                  >
-                    <Illustration
-                      className={`relative z-[1] h-auto w-full max-w-[260px] ${theme.stroke}`}
-                    />
+                  <div className="platform-card-art">
+                    <div className="platform-card-diagram-wrap">
+                      <Illustration className="platform-card-diagram" />
+                    </div>
                   </div>
 
-                  <div className="mt-auto flex items-end justify-between gap-4">
-                    <p className="max-w-[220px] text-left text-[15px] leading-[1.5] text-[var(--color-text-secondary)]">
-                      {card.description}
-                    </p>
+                  <div className="platform-card-footer">
+                    <p className="platform-card-desc">{card.description}</p>
                     <span
-                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-current/15 bg-white/60 text-current transition-colors duration-200 ${theme.stroke} ${theme.arrow}`}
+                      className={`platform-card-arrow flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200/80 bg-white text-current transition-colors duration-200 ${theme.stroke} ${theme.arrow}`}
                     >
                       <ArrowIcon />
                     </span>

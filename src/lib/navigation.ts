@@ -1,4 +1,6 @@
-export type NavMenuId = "platform" | "solutions" | "resources" | "company";
+import { getPlatformWorkflowMenuItems } from "./product-pages";
+
+export type NavMenuId = "platform" | "resources";
 
 export interface NavLinkItem {
   title: string;
@@ -21,52 +23,48 @@ export interface NavFeatureCard {
   accent: "blue" | "green" | "orange";
 }
 
-export const mainNavItems: { id: NavMenuId | "pricing"; label: string; href?: string }[] = [
+export const mainNavItems: { id: NavMenuId; label: string }[] = [
   { id: "platform", label: "Platform" },
-  { id: "solutions", label: "Solutions" },
   { id: "resources", label: "Resources" },
-  { id: "company", label: "Company" },
-  { id: "pricing", label: "Pricing", href: "#pricing" },
 ];
 
-export const platformMenu: NavColumn[] = [
-  {
-    title: "Research Engine",
-    description: "AI-powered keyword research, SERP analysis, and intent mapping.",
-    accent: "orange",
-    links: [
-      { title: "Keyword clustering", href: "#workflow" },
-      { title: "Competitor gaps", href: "#workflow" },
-      { title: "SERP intelligence", href: "#workflow" },
-      { title: "Trend forecasting", href: "#workflow" },
-    ],
-    footerLink: { label: "View all research tools", href: "#modules" },
+export interface PlatformWorkflowItem {
+  title: string;
+  description: string;
+  href: string;
+}
+
+export interface PlatformWorkflowColumn {
+  title: string;
+  description: string;
+  items: PlatformWorkflowItem[];
+}
+
+const workflowMenuItems = getPlatformWorkflowMenuItems();
+
+export const platformWorkflowMenu = {
+  featured: {
+    title: "Riviso Workflow",
+    description:
+      "One orchestrated pipeline from search intelligence through content, optimization, and publish — built for operators who need execution at scale.",
+    href: "/#platform",
+    cta: "Explore the workflow",
   },
-  {
-    title: "Content Studio",
-    description: "Structured workflows for briefs, generation, and editorial quality.",
-    accent: "green",
-    links: [
-      { title: "Content pipelines", href: "#modules" },
-      { title: "Long-form generation", href: "#modules" },
-      { title: "E-E-A-T optimization", href: "#modules" },
-      { title: "Tone & style control", href: "#modules" },
-    ],
-    footerLink: { label: "Explore content studio", href: "#modules" },
-  },
-  {
-    title: "Optimization Layer",
-    description: "Unified SEO, GEO, and AEO optimization with governance built in.",
-    accent: "orange",
-    links: [
-      { title: "SEO scoring", href: "#modules" },
-      { title: "GEO readiness", href: "#modules" },
-      { title: "AEO & snippets", href: "#modules" },
-      { title: "Schema & metadata", href: "#modules" },
-    ],
-    footerLink: { label: "See optimization layer", href: "#modules" },
-  },
-];
+  columns: [
+    {
+      title: "Riviso Workflow",
+      description:
+        "Research, create, and optimize with AI-native modules that share context across every step.",
+      items: workflowMenuItems.build,
+    },
+    {
+      title: "Riviso Workflow",
+      description:
+        "Publish, measure, and orchestrate — close the loop from production to performance.",
+      items: workflowMenuItems.operate,
+    },
+  ] as PlatformWorkflowColumn[],
+};
 
 export const solutionsMenu = {
   intro: {

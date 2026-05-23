@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Container from "@/components/layout/Container";
 import LogoCarousel from "@/components/ui/LogoCarousel";
 
 export default function TrustSection() {
@@ -42,10 +43,10 @@ export default function TrustSection() {
     <section
       ref={sectionRef}
       id="trust"
-      className="trust-section flex w-full flex-col items-center overflow-hidden py-16 md:py-20 lg:py-24"
+      className="site-section trust-section w-full overflow-x-clip py-16 md:py-20 lg:py-24"
       aria-labelledby="trust-heading"
     >
-      <div className="trust-section-inner flex w-full max-w-[1200px] flex-col items-center px-6 text-center">
+      <Container className="flex flex-col items-center text-center">
         <h2
           id="trust-heading"
           className="trust-reveal trust-section-title text-headline w-full opacity-0"
@@ -53,10 +54,10 @@ export default function TrustSection() {
           Brands Actively Using Riviso
         </h2>
 
-        <div className="trust-reveal logo-carousel-wrap mt-12 w-full opacity-0 md:mt-14">
+        <div className="trust-reveal logo-carousel-wrap mt-12 w-full min-w-0 opacity-0 md:mt-14">
           <LogoCarousel />
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

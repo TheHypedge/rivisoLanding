@@ -5,10 +5,11 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { mainNavItems, type NavMenuId } from "@/lib/navigation";
+import SiteShell from "./SiteShell";
 import MegaMenuPanel from "./MegaMenuPanel";
 import RivisoLogo from "./RivisoLogo";
 
-const menuIds = new Set<NavMenuId>(["platform", "solutions", "resources", "company"]);
+const menuIds = new Set<NavMenuId>(["platform", "resources"]);
 
 function isMenuId(id: string): id is NavMenuId {
   return menuIds.has(id as NavMenuId);
@@ -18,9 +19,7 @@ const LOGIN_URL = "https://app.riviso.com";
 
 const pillAccentLight: Record<NavMenuId, string> = {
   platform: "bg-[rgba(249,115,22,0.14)] text-zinc-900",
-  solutions: "bg-[rgba(249,115,22,0.12)] text-zinc-900",
   resources: "bg-[rgba(52,211,153,0.12)] text-zinc-900",
-  company: "bg-[rgba(244,114,182,0.14)] text-zinc-900",
 };
 
 export default function Navbar() {
@@ -59,7 +58,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="site-header-sticky" onMouseLeave={scheduleClose}>
+    <div className="site-section site-header-sticky w-full" onMouseLeave={scheduleClose}>
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -76,33 +75,23 @@ export default function Navbar() {
 
       <header
         className={cn(
-          "site-header relative z-[2] w-full overflow-visible bg-white transition-[box-shadow] duration-300",
-          menuOpen ? "border-b-0" : "border-b border-zinc-200/80",
-          showHeaderShadow && !menuOpen && "shadow-[0_1px_0_0_rgba(0,0,0,0.04)]"
+          "site-header relative z-[2] w-full overflow-visible transition-[box-shadow,background-color,border-color] duration-300",
+          menuOpen ? "border-b-0 bg-white" : "border-b border-zinc-200/70",
+          showHeaderShadow && !menuOpen
+            ? "border-zinc-200/80 bg-white/90 shadow-[0_1px_0_rgba(15,23,42,0.04)] backdrop-blur-md"
+            : "bg-white/95 backdrop-blur-sm"
         )}
       >
-        <div className="header-shell relative">
-          <div className="nav-bar-row relative z-[3] grid h-[var(--nav-height)] grid-cols-[auto_1fr_auto] items-center gap-8 border-b border-zinc-200/80 bg-white lg:gap-12">
+        <SiteShell>
+          <div className="nav-bar-row relative z-[3] grid h-[var(--nav-height)] w-full grid-cols-[auto_1fr_auto] items-center gap-6 lg:gap-10">
             <RivisoLogo href="/" />
 
             <nav
-              className="hidden lg:flex items-center justify-center gap-2 xl:gap-3"
+              className="hidden items-center justify-center gap-0.5 lg:flex xl:gap-1"
               aria-label="Main navigation"
             >
               {mainNavItems.map((item) => {
                 const navItemTone = "nav-item--light";
-
-                if (item.id === "pricing" && item.href) {
-                  return (
-                    <Link
-                      key={item.id}
-                      href={item.href}
-                      className={cn("nav-item", navItemTone)}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                }
 
                 if (!isMenuId(item.id)) return null;
 
@@ -154,27 +143,19 @@ export default function Navbar() {
               })}
             </nav>
 
-            <div className="hidden lg:flex items-center justify-end gap-2 xl:gap-3 shrink-0">
-              <Link
-                href="#cta"
-                className="nav-item nav-item--muted nav-item--light"
-              >
+            <div className="hidden shrink-0 items-center justify-end gap-1 lg:flex">
+              <Link href="#product" className="nav-item nav-item--muted nav-item--light">
                 Free Trial
               </Link>
-              <motion.a
-                href={LOGIN_URL}
-                className="nav-cta"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
+              <a href={LOGIN_URL} className="nav-cta">
                 Login
-              </motion.a>
+              </a>
             </div>
 
             <button
               type="button"
               className={cn(
-                "lg:hidden flex h-10 w-10 items-center justify-center justify-self-end",
+                "flex h-10 w-10 items-center justify-center justify-self-end lg:hidden",
                 "text-zinc-900"
               )}
               onClick={() => setOpen(!open)}
@@ -190,24 +171,26 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
+        </SiteShell>
 
-          <AnimatePresence mode="wait">
-            {activeMenu && (
-              <motion.div
-                key={activeMenu}
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 2 }}
-                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                className="mega-menu-dropdown hidden lg:block"
-                onMouseEnter={cancelClose}
-                onMouseLeave={scheduleClose}
-              >
+        <AnimatePresence mode="wait">
+          {activeMenu && (
+            <motion.div
+              key={activeMenu}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 2 }}
+              transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-x-0 top-full z-10 hidden border-t border-zinc-200/80 bg-white pb-5 pt-3 shadow-[0_24px_48px_-24px_rgba(15,23,42,0.12)] lg:block"
+              onMouseEnter={cancelClose}
+              onMouseLeave={scheduleClose}
+            >
+              <SiteShell>
                 <MegaMenuPanel menuId={activeMenu} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+              </SiteShell>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <AnimatePresence>
           {open && (
@@ -225,14 +208,14 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.2 }}
-                className="absolute left-0 right-0 top-full z-50 max-h-[calc(100vh-var(--nav-height))] overflow-y-auto border-b border-zinc-200 bg-white lg:hidden"
+                className="absolute inset-x-0 top-full z-50 max-h-[calc(100vh-var(--nav-height))] overflow-y-auto border-b border-zinc-200 bg-white lg:hidden"
               >
-                <div className="header-shell flex flex-col py-6">
+                <SiteShell className="flex flex-col py-6">
                   <nav className="flex flex-col gap-1">
                     {mainNavItems.map((item) => (
                       <Link
                         key={item.id}
-                        href={item.href ?? "#"}
+                        href={item.id === "platform" ? "/#platform" : "/#resources"}
                         onClick={() => setOpen(false)}
                         className="py-3 text-center text-[15px] font-medium text-zinc-700 hover:text-zinc-900"
                       >
@@ -257,7 +240,7 @@ export default function Navbar() {
                       Login
                     </a>
                   </div>
-                </div>
+                </SiteShell>
               </motion.div>
             </>
           )}

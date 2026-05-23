@@ -7,6 +7,7 @@ import TrustSection from "@/components/sections/TrustSection";
 import BenefitsShowcaseSection from "@/components/sections/BenefitsShowcaseSection";
 import PlatformSection from "@/components/sections/PlatformSection";
 import ExecutionSection from "@/components/sections/ExecutionSection";
+import Footer from "@/components/layout/Footer";
 import { useLenis } from "@/hooks/useLenis";
 
 export default function Home() {
@@ -23,15 +24,18 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative flex min-h-screen w-full flex-col bg-[var(--color-bg-base)]">
+    <main className="relative flex min-h-screen w-full flex-col overflow-x-clip bg-[var(--color-bg-base)]">
       <Navbar />
-      <div className="hero-container w-full">
+      <div className="site-section hero-container w-full">
         <HeroSection />
       </div>
-      <TrustSection />
+     
       <BenefitsShowcaseSection />
       <PlatformSection />
+      
       <ExecutionSection />
+      <TrustSection />
+      <Footer />
     </main>
   );
 }

@@ -1,10 +1,24 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import Container from "@/components/layout/Container";
 import HeroPreview from "@/components/dashboard/HeroPreview";
 import WaitlistModal from "@/components/waitlist/WaitlistModal";
+
+function TrustCheck() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden className="shrink-0">
+      <circle cx="7" cy="7" r="6.5" stroke="currentColor" strokeOpacity="0.2" />
+      <path
+        d="M4.25 7.25 6.1 9.1 9.85 5.35"
+        stroke="currentColor"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -25,23 +39,23 @@ export default function HeroSection() {
 
       tl.fromTo(
         el.querySelectorAll(".hero-reveal"),
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.7, stagger: 0.08 }
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.06 }
       ).fromTo(
-        el.querySelector(".hero-preview"),
-        { opacity: 0, y: 48, scale: 0.98 },
-        { opacity: 1, y: 0, scale: 1, duration: 1 },
-        "-=0.35"
+        el.querySelector(".hero-preview-stage"),
+        { opacity: 0, y: 32 },
+        { opacity: 1, y: 0, duration: 0.85 },
+        "-=0.3"
       );
 
-      gsap.to(el.querySelector(".hero-preview"), {
-        y: -20,
+      gsap.to(el.querySelector(".hero-preview-stage"), {
+        y: -12,
         ease: "none",
         scrollTrigger: {
           trigger: el,
           start: "top bottom",
           end: "bottom top",
-          scrub: 1.5,
+          scrub: 1.2,
         },
       });
     };
@@ -54,60 +68,48 @@ export default function HeroSection() {
       <section
         ref={sectionRef}
         id="product"
-        className="hero-section relative flex w-full flex-col items-center overflow-x-hidden"
+        className="site-section hero-section relative w-full overflow-x-hidden"
       >
-        <div className="hero-glow pointer-events-none absolute inset-0" />
-        <div className="hero-grid pointer-events-none absolute inset-0 opacity-[0.45]" aria-hidden />
-        <div className="pointer-events-none absolute left-1/2 top-[18%] h-[520px] w-[min(920px,92vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(234,88,12,0.09)_0%,transparent_68%)] blur-[100px]" />
+        <div className="hero-backdrop pointer-events-none absolute inset-0" aria-hidden />
+        <div className="hero-backdrop-glow pointer-events-none absolute inset-0" aria-hidden />
 
-        <Container className="page-center relative pb-20 md:pb-28">
-          <div className="hero-reveal mx-auto flex w-full max-w-[780px] flex-col items-center gap-7 px-4 text-center opacity-0 md:gap-9">
-            <div className="badge mx-auto w-fit">
-              <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
+        <Container className="hero-inner page-center relative flex flex-col items-center">
+          <div className="hero-copy hero-reveal mx-auto flex w-full max-w-[720px] flex-col items-center text-center opacity-0">
+            <div className="hero-eyebrow">
+              <span className="hero-eyebrow-dot" aria-hidden />
               AI-native SEO infrastructure
             </div>
 
-            <h1 className="hero-headline text-display text-[var(--color-text-primary)]">
-              The AI Operating System
-              <br />
-              <span className="hero-headline-accent text-[var(--color-accent)]">
-                for Modern SEO
-              </span>
+            <h1 className="hero-headline">
+              <span className="hero-headline-line">Run Your Entire SEO Workflow</span>
+              <span className="hero-headline-accent">From One Intelligent System</span>
             </h1>
 
-            <p className="hero-subcopy text-body mx-auto max-w-[560px] text-[1.0625rem] leading-[1.65] md:text-[1.125rem]">
-              From research to publishing — automate the entire SEO workflow with
-              AI-native infrastructure built for operators, publishers, and growth teams.
+            <p className="hero-subcopy">
+            From research to publishing, RIVISO automates the complete SEO workflow — including content generation, interlinking, GEO, AEO, optimization, and direct WordPress publishing.
             </p>
 
-            <div className="flex flex-col items-center gap-4">
-              <motion.button
+            <div className="hero-cta-stack">
+              <button
                 type="button"
                 onClick={() => setWaitlistOpen(true)}
-                whileHover={{ scale: 1.02, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                className="btn-waitlist min-w-[220px] px-8 py-3.5 text-[0.9375rem] shadow-[0_12px_40px_-12px_rgba(234,88,12,0.45)]"
+                className="btn-waitlist hero-cta-primary"
               >
                 Join Waitlist
-              </motion.button>
-              <p className="text-body-sm flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-                <span>No credit card required</span>
-                <span className="hidden text-zinc-300 sm:inline" aria-hidden>
-                  ·
-                </span>
-                <span>Early access for founding teams</span>
-              </p>
+              </button>
+             
             </div>
           </div>
 
-          <div className="hero-preview mt-10 w-full max-w-[1080px] px-2 opacity-0 sm:mt-14 sm:px-0 md:mt-16">
+          <div className="hero-preview-stage hero-reveal mx-auto w-full max-w-[1040px] opacity-0">
+            <div className="hero-preview-rail" aria-hidden />
             <div className="hero-preview-frame">
               <HeroPreview />
             </div>
           </div>
         </Container>
 
-        <div className="divider-h w-full" />
+        <div className="hero-section-fade pointer-events-none" aria-hidden />
       </section>
 
       <WaitlistModal open={waitlistOpen} onClose={() => setWaitlistOpen(false)} />
