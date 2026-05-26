@@ -94,10 +94,9 @@ function PlatformMenu() {
           variants={item}
           className="platform-workflow-column"
         >
-          <div className="platform-workflow-column-header">
-            <h3 className="platform-workflow-column-title">{column.title}</h3>
-            <p className="platform-workflow-column-desc">{column.description}</p>
-          </div>
+          <p className="m-0 mb-3 text-[10px] font-bold uppercase tracking-[0.1em] text-zinc-400">
+            {column.title}
+          </p>
           <ul className="platform-workflow-cards">
             {column.items.map((card) => (
               <li key={card.title}>

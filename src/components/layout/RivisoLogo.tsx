@@ -10,6 +10,7 @@ type RivisoLogoProps = {
   href?: string;
   className?: string;
   imageClassName?: string;
+  onClick?: () => void;
 };
 
 export default function RivisoLogo({
@@ -17,6 +18,7 @@ export default function RivisoLogo({
   href = "/",
   className,
   imageClassName,
+  onClick,
 }: RivisoLogoProps) {
   const [mounted, setMounted] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -68,7 +70,7 @@ export default function RivisoLogo({
   }
 
   return (
-    <Link href={href} className={cn("nav-logo inline-flex shrink-0 items-center", className)}>
+    <Link href={href} onClick={onClick} className={cn("nav-logo inline-flex shrink-0 items-center", className)}>
       {content}
     </Link>
   );

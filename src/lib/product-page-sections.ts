@@ -1,9 +1,12 @@
+import type { ReactNode } from "react";
 import type { ProductCenterFeatureProps } from "@/components/sections/product/ProductCenterFeature";
 import type { ProductSplitFeatureProps } from "@/components/sections/product/ProductSplitFeature";
 import type { FaqItem } from "@/components/sections/product/ProductFaqSection";
+import type { BenefitsGridProps } from "@/components/sections/product/BenefitsGrid";
 
 export type ProductPageSectionsContent = {
-  center: ProductCenterFeatureProps;
+  center: ProductCenterFeatureProps & { visual?: ReactNode };
+  benefitsGrid?: BenefitsGridProps;
   split: ProductSplitFeatureProps;
   faqs: FaqItem[];
 };

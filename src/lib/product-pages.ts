@@ -1,3 +1,9 @@
+/** Shared hero visual until per-product assets are added under public/media/ */
+export const defaultProductHeroImage = "/media/searchIntelligence.png";
+
+export const defaultProductHeroImageAlt =
+  "Riviso platform visualization with magnifying glass over glowing data landscape";
+
 export type ProductPageConfig = {
   slug: string;
   eyebrow: string;
@@ -7,20 +13,29 @@ export type ProductPageConfig = {
   title: string;
   /** Hero body copy */
   description: string;
+  /** Hero background — path under /public (e.g. /media/searchIntelligence.png) */
+  heroImage?: string;
+  heroImageAlt?: string;
   menuDescription: string;
   metaTitle: string;
   metaDescription: string;
   workflowColumn: "build" | "operate";
 };
 
+const sharedProductHero = {
+  heroImage: defaultProductHeroImage,
+  heroImageAlt: defaultProductHeroImageAlt,
+} as const;
+
 export const productPages: ProductPageConfig[] = [
   {
     slug: "search-engine-intelligence",
     eyebrow: "Search Engine Intelligence",
     menuTitle: "Search Intelligence / Research Engine",
-    title: "Turn search data into ranked opportunities — automatically",
+    title: "Turn search data into scalable growth opportunities",
     description:
-      "Riviso’s research layer connects keyword clustering, SERP intelligence, competitor gaps, and intent mapping in one AI-native system built for operators who need clarity before they publish.",
+      "Riviso unifies keyword intelligence, SERP analysis, topical mapping, and AI-assisted workflows into one operational SEO platform — enabling teams to research, plan, optimize, and publish with precision.",
+    ...sharedProductHero,
     menuDescription:
       "Keyword clustering, SERP analysis, competitor gaps, and intent mapping in one research layer.",
     metaTitle: "Search Engine Intelligence — RIVISO",
@@ -32,84 +47,92 @@ export const productPages: ProductPageConfig[] = [
     slug: "content-studio",
     eyebrow: "Content Studio",
     menuTitle: "Content Studio",
-    title: "Move from brief to publish-ready content — without the handoffs",
+    title: "Move from search strategy to publish-ready content — in one unified workflow",
     description:
-      "Structured pipelines for briefs, long-form generation, and editorial quality — with tone, E-E-A-T, and brand context built into every draft.",
+      "Riviso Content Studio combines AI-assisted briefing, semantic outlining, long-form generation, optimization, and editorial workflows into a centralized content operations system built for modern SEO teams.",
+    ...sharedProductHero,
+    heroImage: "/media/contentStudio.png",
+    heroImageAlt: "Riviso Content Studio — unified content operations workflow",
     menuDescription:
       "Structured briefs, generation, and editorial workflows from outline to draft.",
     metaTitle: "Content Studio — RIVISO",
     metaDescription:
-      "Structured content workflows for briefs, AI generation, and editorial quality — built for modern SEO and content teams.",
+      "AI-native content operations platform — briefs, generation, optimization, and editorial workflows for modern SEO teams.",
     workflowColumn: "build",
   },
   {
     slug: "interlink-ai",
     eyebrow: "Interlink AI",
     menuTitle: "Interlink AI — Semantic Authority Engine",
-    title: "Build topical authority with intelligence, not spreadsheets",
+    title: "Build semantic authority through intelligent internal linking systems",
     description:
-      "Semantic internal linking and cluster architecture that strengthens authority across your site — automated suggestions, governance, and context-aware placement.",
+      "Riviso Interlink AI automatically maps contextual relationships between pages, topics, and entities to create scalable internal linking architectures designed for stronger topical authority, improved crawl efficiency, and deeper search relevance.",
+    ...sharedProductHero,
     menuDescription:
       "Build topical authority with intelligent internal linking and cluster architecture.",
     metaTitle: "Interlink AI — Semantic Authority Engine — RIVISO",
     metaDescription:
-      "Intelligent internal linking and semantic authority for SEO — cluster architecture and link governance in one system.",
+      "AI-powered semantic internal linking — contextual relationship mapping, topical clustering, and link governance for modern SEO teams.",
     workflowColumn: "build",
   },
   {
     slug: "optimization-layer",
     eyebrow: "Optimization Layer",
     menuTitle: "Optimization Layer",
-    title: "Unify SEO, GEO, and AEO optimization in one governed layer",
+    title: "Optimize for SEO, GEO, and AI-native search visibility from one unified system",
     description:
-      "Score, fix, and govern on-page and entity signals — schema, metadata, snippet readiness, and AI-search optimization without switching tools.",
+      "Riviso Optimization Layer combines semantic SEO, GEO optimization, structured metadata, schema intelligence, and content governance into a centralized workflow designed for modern search ecosystems and AI-driven discovery.",
+    ...sharedProductHero,
     menuDescription:
       "Unified SEO, GEO, and AEO scoring with schema, metadata, and governance built in.",
     metaTitle: "Optimization Layer — RIVISO",
     metaDescription:
-      "Unified SEO, GEO, and AEO optimization with scoring, schema, metadata, and governance for enterprise teams.",
+      "AI-native optimization for SEO, GEO, and AI-search visibility — semantic intelligence, schema, metadata, and governance in one system.",
     workflowColumn: "build",
   },
   {
     slug: "publishing-hub",
     eyebrow: "Publishing Hub",
     menuTitle: "Publishing Hub",
-    title: "Publish optimized content to WordPress — on your schedule",
+    title: "Publish optimized content across channels through one operational workflow",
     description:
-      "Push approved content to WordPress and connected channels with scheduling, QA gates, and full traceability from brief to live URL.",
+      "Riviso Publishing Hub centralizes publishing, scheduling, QA validation, metadata controls, and distribution workflows to help teams move from optimized drafts to live search-ready content with operational consistency.",
+    ...sharedProductHero,
     menuDescription:
       "Push optimized content to WordPress and connected channels with scheduling and QA gates.",
     metaTitle: "Publishing Hub — RIVISO",
     metaDescription:
-      "Publish SEO-optimized content to WordPress with scheduling, QA workflows, and direct Riviso integration.",
+      "Centralized publishing operations — scheduling, QA validation, metadata controls, and deployment workflows for modern SEO teams.",
     workflowColumn: "operate",
   },
   {
     slug: "analytic-engine",
     eyebrow: "Analytic Engine",
     menuTitle: "Analytic Engine",
-    title: "Measure what your workflow actually moves",
+    title: "Transform SEO performance data into operational growth intelligence",
     description:
-      "Rankings, traffic, and workflow ROI in dashboards built for SEO operators — connect production metrics to business outcomes.",
+      "Riviso Analytic Engine centralizes rankings, traffic visibility, content performance, workflow efficiency, and search intelligence into unified dashboards designed for modern SEO operations and scalable decision-making.",
+    ...sharedProductHero,
     menuDescription:
       "Track rankings, traffic, and workflow ROI with dashboards built for SEO operators.",
     metaTitle: "Analytic Engine — RIVISO",
     metaDescription:
-      "SEO analytics and workflow ROI dashboards — rankings, traffic, and performance for modern growth teams.",
+      "Centralized SEO analytics — rankings, traffic, workflow ROI, and search intelligence for scalable growth operations.",
     workflowColumn: "operate",
   },
   {
     slug: "workflow-orchestration",
     eyebrow: "Workflow Orchestration",
     menuTitle: "Workflow Orchestration",
-    title: "Orchestrate research through publish — without tool sprawl",
+    title: "Connect research, content, optimization, and publishing into one intelligent operational workflow",
     description:
-      "Automate handoffs between research, content, optimization, and publish with Riviso IQ keeping context, quality, and operators aligned.",
+      "Riviso Workflow Orchestration centralizes task automation, operational handoffs, approvals, execution pipelines, and AI-assisted coordination to help SEO teams scale workflows without fragmentation or manual bottlenecks.",
+    ...sharedProductHero,
     menuDescription:
       "Automate handoffs between research, content, optimization, and publish with Riviso IQ.",
     metaTitle: "Workflow Orchestration — RIVISO",
     metaDescription:
-      "End-to-end SEO workflow orchestration — automate research, content, optimization, and publishing in one system.",
+      "AI-native workflow orchestration — task automation, approvals, execution pipelines, and operational coordination for scalable SEO teams.",
     workflowColumn: "operate",
   },
 ];

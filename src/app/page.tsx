@@ -7,6 +7,7 @@ import TrustSection from "@/components/sections/TrustSection";
 import BenefitsShowcaseSection from "@/components/sections/BenefitsShowcaseSection";
 import PlatformSection from "@/components/sections/PlatformSection";
 import ExecutionSection from "@/components/sections/ExecutionSection";
+import AIDiscoverySection from "@/components/sections/AIDiscoverySection";
 import Footer from "@/components/layout/Footer";
 import { useLenis } from "@/hooks/useLenis";
 
@@ -31,6 +32,7 @@ export default function Home() {
       </div>
      
       <BenefitsShowcaseSection />
+      <AIDiscoverySection />
       <PlatformSection />
       
       <ExecutionSection />

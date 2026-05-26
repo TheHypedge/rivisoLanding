@@ -44,23 +44,21 @@ const workflowMenuItems = getPlatformWorkflowMenuItems();
 
 export const platformWorkflowMenu = {
   featured: {
-    title: "Riviso Workflow",
+    title: "Riviso Platform",
     description:
       "One orchestrated pipeline from search intelligence through content, optimization, and publish — built for operators who need execution at scale.",
     href: "/#platform",
-    cta: "Explore the workflow",
+    cta: "Explore the platform",
   },
   columns: [
     {
-      title: "Riviso Workflow",
-      description:
-        "Research, create, and optimize with AI-native modules that share context across every step.",
+      title: "Build",
+      description: "",
       items: workflowMenuItems.build,
     },
     {
-      title: "Riviso Workflow",
-      description:
-        "Publish, measure, and orchestrate — close the loop from production to performance.",
+      title: "Operate",
+      description: "",
       items: workflowMenuItems.operate,
     },
   ] as PlatformWorkflowColumn[],
